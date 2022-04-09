@@ -4,6 +4,7 @@ export const NavigationKeys = {
     allPatients: 'allPatients',
     profile: 'profile',
     testing: 'testing',
+    common: 'common',
   },
   screen: {
     allPatient: 'allPatient',
