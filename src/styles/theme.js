@@ -50,6 +50,8 @@ const theme = {
       blackLight: '#595959',
       doggerBlue: '#3497F9',
       manatee: '#8E8E93',
+      athensGray: '#ECECED',
+      azureRadiance: '#007AFF',
     },
   },
   typography: {
