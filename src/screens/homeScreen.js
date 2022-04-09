@@ -13,7 +13,7 @@ export const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: 'red'},
+  container: {flex: 1},
   healthRow: {
     flexDirection: 'row',
     flex: 1,
