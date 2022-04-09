@@ -7,13 +7,18 @@ import VectorImage from 'react-native-vector-image';
 import {ImagePath, ResponsiveSize} from '../../../utility';
 import theme from '../../../styles/theme';
 
+const doctypeConfig = {
+  image: {icon: ImagePath.camera, description: 'Photo'},
+  file: {icon: ImagePath.camera, description: 'Document'},
+};
+
 export const UserInfoRow = props => {
-  const {heading, subHeading, image, headingRightText, flag} = props;
+  const {heading, subHeading, image, headingRightText, flag, doctype} = props;
 
   return (
     <View style={styles.rowContainer}>
       <Image source={image} style={styles.image} />
-      <View style={{flex: 1}}>
+      <View style={styles.midContent}>
         <View style={styles.rowContainer}>
           <SubHeading textColor={theme.palette.neutral.black}>
             {heading}
@@ -25,9 +30,18 @@ export const UserInfoRow = props => {
           )}
         </View>
         <View style={styles.rowContainer}>
-          <Paragraph textColor={theme.palette.neutral.manatee}>
-            {subHeading}
-          </Paragraph>
+          <View style={styles.rowContainer}>
+            {doctype && (
+              <VectorImage
+                source={doctypeConfig[doctype].icon}
+                resizeMode={'contain'}
+                style={styles.rightIcon}
+              />
+            )}
+            <Paragraph textColor={theme.palette.neutral.manatee}>
+              {doctype ? doctypeConfig[doctype].description : subHeading}
+            </Paragraph>
+          </View>
           {flag && <Flag value={flag} />}
         </View>
       </View>
@@ -53,5 +67,8 @@ const styles = StyleSheet.create({
   },
   rightIcon: {
     marginLeft: ResponsiveSize(12),
+  },
+  midContent: {
+    flex: 1,
   },
 });

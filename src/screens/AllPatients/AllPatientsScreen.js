@@ -1,8 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {Heading} from '../../components/atoms/text/heading';
 import {Header} from '../../components/molecules/header';
 import {UserInfoRow} from '../../components/molecules/userInfoRow';
+import {InputBox} from '../../components/atoms/input';
+import theme from '../../styles/theme';
+import {ResponsiveSize} from '../../utility';
 
 var dateObj = new Date();
 var month = dateObj.getUTCMonth() + 1;
@@ -36,7 +38,6 @@ const mockData = [
 ];
 
 const renderUserGroups = ({item}) => {
-  console.log(item, 'item$$$');
   const {groupName, message, flag, groupImage, date} = item;
 
   return (
@@ -51,21 +52,30 @@ const renderUserGroups = ({item}) => {
 };
 
 export const AllPatientsScreen = () => {
+  const onChangeText = data => {
+    //TODO: Pummy need to implement search logic
+  };
+
   return (
     <View style={styles.container}>
       <Header onBackPress={() => {}} title={'All Patients'} />
+      <InputBox
+        placeholder="Search by patient name"
+        onChangeText={onChangeText}
+      />
       <FlatList
         data={mockData}
         renderItem={renderUserGroups}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         keyExtractor={(item, index) => `${item.groupName} ${index}`}
+        contentContainerStyle={styles.userGroupList}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1},
+  container: {flex: 1, backgroundColor: theme.palette.background},
   healthRow: {
     flexDirection: 'row',
     flex: 1,
@@ -73,7 +83,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   separator: {
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+    borderBottomColor: theme.palette.neutral.manatee,
+    borderBottomWidth: 0.5,
+    marginVertical: ResponsiveSize(16),
+  },
+  userGroupList: {
+    paddingVertical: ResponsiveSize(16),
+    marginHorizontal: ResponsiveSize(16),
   },
 });
