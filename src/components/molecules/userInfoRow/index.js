@@ -1,11 +1,12 @@
 import React from 'react';
-import {Image, View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {SubHeading} from '../../atoms/text/subHeading';
 import {Paragraph} from '../../atoms/text/paragraph';
 import {Flag} from '../../atoms/flag';
 import VectorImage from 'react-native-vector-image';
 import {ImagePath, ResponsiveSize} from '../../../utility';
 import theme from '../../../styles/theme';
+import {Image} from '../../atoms/image';
 
 const doctypeConfig = {
   image: {icon: ImagePath.camera, description: 'Photo'},
@@ -13,11 +14,26 @@ const doctypeConfig = {
 };
 
 export const UserInfoRow = props => {
-  const {heading, subHeading, image, headingRightText, flag, doctype} = props;
+  const {
+    heading,
+    subHeading,
+    headingRightText,
+    flag,
+    doctype,
+    onPress = null,
+  } = props;
+
+  const Container = onPress ? TouchableOpacity : View;
+  const containerProps = onPress ? {onPress: onPress} : {};
 
   return (
-    <View style={styles.rowContainer}>
-      <Image source={image} style={styles.image} />
+    <Container style={styles.rowContainer} {...containerProps}>
+      <Image
+        style={styles.image}
+        imageSource={ImagePath.groupImage}
+        width={52}
+        height={52}
+      />
       <View style={styles.midContent}>
         <View style={styles.rowContainer}>
           <SubHeading textColor={theme.palette.neutral.black}>
@@ -50,7 +66,7 @@ export const UserInfoRow = props => {
         resizeMode={'contain'}
         style={styles.rightIcon}
       />
-    </View>
+    </Container>
   );
 };
 
@@ -58,11 +74,9 @@ const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   image: {
-    width: ResponsiveSize(52),
-    height: ResponsiveSize(52),
-    backgroundColor: 'red',
     marginRight: ResponsiveSize(12),
   },
   rightIcon: {

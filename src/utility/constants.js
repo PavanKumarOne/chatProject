@@ -37,6 +37,7 @@ export const ImagePath = {
   chat: require('../assets/images/chat.svg'),
   persons: require('../assets/images/persons.svg'),
   camera: require('../assets/images/camera.svg'),
+  groupImage: require('../assets/images/groupImage.png'),
 };
 
 export const Colors = {
