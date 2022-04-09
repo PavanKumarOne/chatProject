@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Header} from '../../components/molecules/header';
 import {UserInfoRow} from '../../components/molecules/userInfoRow';
@@ -25,21 +25,28 @@ const renderUserGroups = (item, navigation) => {
 };
 
 export const AllPatientsScreen = ({navigation}) => {
-  const onChangeText = data => {
-    //TODO: Pummy need to implement search logic
-  };
+  const debouncer = useRef();
+  const [data, setData] = useState(chatGroups);
+
+  function onChangeText(txt) {
+    clearTimeout(debouncer.current);
+    debouncer.current = setTimeout(() => {
+      const filteredData = data.filter(group => group.groupName.includes(txt));
+      setData(filteredData);
+    }, 500);
+  }
 
   return (
     <View style={styles.container}>
       <Header onBackPress={() => {}} title={'All Patients'} />
       <View style={styles.search}>
         <TextInput
-          placeholder="Search by patient name"
+          placeholder="Search by group name"
           onChangeText={onChangeText}
         />
       </View>
       <FlatList
-        data={chatGroups}
+        data={data}
         renderItem={({item}) => renderUserGroups(item, navigation)}
         ItemSeparatorComponent={() => <Line style={styles.separater} />}
         keyExtractor={(item, index) => `${item.groupName} ${index}`}

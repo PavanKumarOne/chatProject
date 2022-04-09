@@ -7,7 +7,7 @@ export const messages = [
     time: '10:10',
   },
   {
-    id: 1,
+    id: 2,
     name: 'oneCare',
     message: 'Hii Pummy ,Thank you for contacting us!',
     user: true,
@@ -35,7 +35,7 @@ export const messages = [
     time: '10:10',
   },
   {
-    id: 1,
+    id: 6,
     name: 'oneCare',
     message: 'your phone number',
     user: true,

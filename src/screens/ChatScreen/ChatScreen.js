@@ -34,7 +34,7 @@ export const ChatScreen = ({route, navigation}) => {
         userInfoConfig={{
           heading: groupName,
           subHeading: 'type here for more info',
-          image: {groupImage},
+          image: groupImage,
         }}
         enableBack
         onBackPress={() =>
