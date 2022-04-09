@@ -38,6 +38,8 @@ export const ImagePath = {
   persons: require('../assets/images/persons.svg'),
   camera: require('../assets/images/camera.svg'),
   groupImage: require('../assets/images/groupImage.png'),
+  pdf: require('../assets/images/pdf.svg'),
+  sample2:require('../assets/images/unsplash_kcA-c3f_3FE.png')
 };
 
 export const Colors = {

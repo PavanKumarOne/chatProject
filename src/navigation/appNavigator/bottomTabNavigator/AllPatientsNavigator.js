@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationKeys} from '../../constants';
 import {AllPatientsScreen} from '../../../screens/AllPatients';
+import {ContactInfo} from '../../../screens/AllPatients/ContactInfo';
 
 const AllPatientsStack = createNativeStackNavigator();
 
@@ -12,6 +13,11 @@ export const AllPatientsStackNavigator = () => {
       <AllPatientsStack.Screen
         name={NavigationKeys.screen.allPatient}
         component={AllPatientsScreen}
+        options={{headerShown: false}}
+      />
+      <AllPatientsStack.Screen
+        name={NavigationKeys.screen.contactInfo}
+        component={ContactInfo}
         options={{headerShown: false}}
       />
     </AllPatientsStack.Navigator>

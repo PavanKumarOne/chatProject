@@ -1,15 +1,24 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {ResponsiveSize} from '../../../utility';
+import {ImagePath, ResponsiveSize} from '../../../utility';
 import {Heading} from '../text/heading';
 import {SubHeading} from '../text/subHeading';
 import {Label} from '../text/label';
+import theme from '../../../styles/theme';
+import VectorImage from 'react-native-vector-image';
 
-export const UserInfoRow = props => {
-  const {heading, value, subHeading} = props;
+export const ProfileRow = props => {
+  const {heading, value, subHeading, icon = false, style = {}} = props;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
+      {icon && (
+        <VectorImage
+          source={icon ?? ImagePath.backArrow}
+          resizeMode={'contain'}
+          style={styles.icon}
+        />
+      )}
       <View>
         <Heading>{heading}</Heading>
         {subHeading && <Label>{subHeading}</Label>}
@@ -21,10 +30,13 @@ export const UserInfoRow = props => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.neutral.white,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: ResponsiveSize(16),
+  },
+  icon: {
+    marginRight: ResponsiveSize(16),
   },
 });
