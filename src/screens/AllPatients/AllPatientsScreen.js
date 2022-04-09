@@ -6,7 +6,7 @@ import {Header} from '../../components/molecules/header';
 export const AllPatientsScreen = () => {
   return (
     <View style={styles.container}>
-      <Header enableBack onBackPress={() => {}} title={'AllPatientsScreen'} />
+      <Header onBackPress={() => {}} title={'All Patients'} />
       <Heading fontWeight="bold">AllPatientsScreen</Heading>
     </View>
   );

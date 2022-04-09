@@ -1,12 +1,10 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Heading} from '../../components/atoms/text/heading';
-import {Header} from '../../components/molecules/header';
 
 export const ProfileScreen = () => {
   return (
     <View style={styles.container}>
-      <Header enableBack onBackPress={() => {}} title={'ProfileScreen'} />
       <Heading fontWeight="bold">ProfileScreen</Heading>
     </View>
   );

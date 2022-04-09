@@ -5,7 +5,7 @@ import {AllPatientsStackNavigator} from './AllPatientsNavigator';
 import {AssignedChatsStackNavigator} from './AssignedChats';
 import {ProfileStackNavigator} from './ProfileNavigator';
 import {TestingStackStackNavigator} from './TestingNavigator';
-import {Colors, ResponsiveSize, ImagePath} from '../../../utility';
+import {Colors, ResponsiveSize, ImagePath, Fonts} from '../../../utility';
 import VectorImage from 'react-native-vector-image';
 
 const BottomTab = createBottomTabNavigator();
@@ -22,6 +22,7 @@ export function BottomTabNavigator() {
         tabBarLabelStyle: {
           fontSize: ResponsiveSize(10),
           fontWeight: '600',
+          fontFamily: Fonts.SFPro,
         },
       }}
       initialRouteName={NavigationKeys.stacks.allPatients}>
@@ -32,7 +33,7 @@ export function BottomTabNavigator() {
           tabBarLabel: 'Assigned Chats',
           tabBarIcon: ({color, size}) => {
             return (
-              <VectorImage source={ImagePath.home} style={{tintColor: color}} />
+              <VectorImage source={ImagePath.chat} style={{tintColor: color}} />
             );
           },
         }}
@@ -44,7 +45,10 @@ export function BottomTabNavigator() {
           tabBarLabel: 'All Patients',
           tabBarIcon: ({color, size}) => {
             return (
-              <VectorImage source={ImagePath.home} style={{tintColor: color}} />
+              <VectorImage
+                source={ImagePath.persons}
+                style={{tintColor: color}}
+              />
             );
           },
         }}
@@ -56,7 +60,10 @@ export function BottomTabNavigator() {
           tabBarLabel: 'Profile',
           tabBarIcon: ({color, size}) => {
             return (
-              <VectorImage source={ImagePath.home} style={{tintColor: color}} />
+              <VectorImage
+                source={ImagePath.profile}
+                style={{tintColor: color}}
+              />
             );
           },
         }}

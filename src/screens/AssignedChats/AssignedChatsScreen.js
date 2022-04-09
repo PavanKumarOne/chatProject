@@ -6,8 +6,8 @@ import {Header} from '../../components/molecules/header';
 export const AssignedChatsScreen = () => {
   return (
     <View style={styles.container}>
-      <Header enableBack onBackPress={() => {}} title={'AssignedChatsScreen'} />
-      <Heading fontWeight="bold">AssignedChatsScreen</Heading>
+      <Header onBackPress={() => {}} title={'Assigned Chats'} />
+      <Heading fontWeight="bold">Assigned Chats</Heading>
     </View>
   );
 };

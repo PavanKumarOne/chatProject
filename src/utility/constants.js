@@ -1,6 +1,3 @@
-import lang from '../assets/languages';
-import theme from '../styles/theme';
-
 export const ImagePath = {
   oneCareLogo: require('../assets/images/OneCareLogo.svg'),
   landingOne: require('../assets/images/LandingOne.svg'),
@@ -37,6 +34,8 @@ export const ImagePath = {
   greenFrame: require('../assets/images/greenFrame.png'),
   orangeFrame: require('../assets/images/orangeFrame.png'),
   blueFrame: require('../assets/images/blueFrame.png'),
+  chat: require('../assets/images/chat.svg'),
+  persons: require('../assets/images/persons.svg'),
 };
 
 export const Colors = {
@@ -66,120 +65,3 @@ export const Colors = {
 export const Fonts = {
   SFPro: 'SFProText-Regular',
 };
-
-export const Strings = {};
-
-export const LandingData = [
-  {
-    id: 1,
-    image: ImagePath.landingOne,
-    heading:
-      'Every diabetes battle is unique. We’re here to help you through yours.',
-    subHeading:
-      'With the right guidance from dedicated dieticians & health coaches',
-    buttonText: 'Know more',
-  },
-  {
-    id: 2,
-    image: ImagePath.landingTwo,
-    heading: 'Personalized Treatment Plans',
-    subHeading: 'Dedicated programs to control diabetes',
-    buttonText: 'Next',
-  },
-  {
-    id: 3,
-    image: ImagePath.landingThree,
-    heading: '1-to-1 sessions',
-    subHeading: 'Assessment by Diabetologists and Dieticians',
-    buttonText: 'Next',
-  },
-  {
-    id: 4,
-    image: ImagePath.landingFour,
-    heading: 'Diet and Lifestyle',
-    subHeading: 'Customised Exercise, Sleep & Diet Plans',
-    buttonText: 'Next',
-  },
-];
-
-export const Durations = Object.freeze({
-  week: 'week',
-  month: 'month',
-  year: 'year',
-});
-
-export const BloodSugarTypes = Object.freeze({
-  fasting: 'fasting',
-  postmeal: 'postmeal',
-  random: 'random',
-});
-
-export const HealthTypeConfig = Object.freeze({
-  bloodsugar: {
-    type: 'bloodsugar',
-    endPoint: 'getBloodSugar',
-    metric: lang.units['mg/dL'],
-    chart: 'line',
-    heading: {
-      [BloodSugarTypes.fasting]: lang.fastingBS,
-      [BloodSugarTypes.postmeal]: lang.postMealBS,
-      [BloodSugarTypes.random]: lang.randomBS,
-    },
-    chartColor: theme.palette.neutral.pinkLinear1,
-    navigationScreen: 'BloodSugar',
-  },
-  weight: {
-    type: 'weight',
-    endPoint: 'getWeight',
-    metric: lang.units.kg,
-    chart: 'line',
-    heading: lang.weight,
-    chartColor: theme.palette.primary.primary01,
-    navigationScreen: 'Weight',
-  },
-  diet: {
-    type: 'diet',
-    endPoint: 'getDiet',
-    metric: lang.units.meals,
-    chart: 'bar',
-    heading: lang.diet,
-    chartColor: theme.palette.primary.primary02,
-    navigationScreen: 'Diet',
-  },
-  physical: {
-    type: 'physical',
-    endPoint: 'getPhysicalActivity',
-    metric: lang.units.calories,
-    chart: 'bar',
-    heading: lang.physicalActivities,
-    chartColor: theme.palette.primary.primary03,
-    navigationScreen: 'PhysicalActivity',
-  },
-  sleep: {
-    type: 'sleep',
-    endPoint: 'getSleep',
-    metric: lang.units.hours,
-    chart: 'line',
-    heading: lang.sleep,
-    chartColor: theme.palette.secondary.secondary01,
-    navigationScreen: 'Sleep',
-  },
-  steps: {
-    type: 'steps',
-    endPoint: 'getSteps',
-    metric: lang.units.steps,
-    chart: 'bar',
-    heading: lang.steps,
-    chartColor: theme.palette.secondary.secondary02,
-    navigationScreen: 'Steps',
-  },
-  hba1c: {
-    type: 'hba1c',
-    endPoint: 'getHba1c_test',
-    metric: lang.units.percentage,
-    chart: 'bar',
-    heading: lang.hba1c,
-    chartColor: theme.palette.neutral.pinkLinear1,
-    navigationScreen: 'HbA1cTest',
-  },
-});

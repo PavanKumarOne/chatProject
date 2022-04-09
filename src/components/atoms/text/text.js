@@ -29,7 +29,7 @@ export const Text = porps => {
 const getStyles = (fontFamily, font, fontWeight, textColor) =>
   StyleSheet.create({
     text: {
-      // fontFamily: fontFamily,
+      fontFamily: fontFamily,
       fontSize: ResponsiveSize(font.fontSize),
       lineHeight: ResponsiveSize(font.lineHeight),
       fontWeight: fontWeight,
