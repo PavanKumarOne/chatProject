@@ -11,7 +11,11 @@ const TestingStack = createNativeStackNavigator();
 export const TestingStackStackNavigator = () => {
   return (
     <TestingStack.Navigator>
-      <TestingStack.Screen name="ChatScreen" component={ChatScreen} options={{headerShown: false}}/>
+      <TestingStack.Screen
+        name={NavigationKeys.screen.chat}
+        component={ChatScreen}
+        options={{headerShown: false}}
+      />
     </TestingStack.Navigator>
   );
 };

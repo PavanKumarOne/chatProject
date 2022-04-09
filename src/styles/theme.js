@@ -88,7 +88,7 @@ const theme = {
   },
   button: {
     primary: {
-      text: '#FFFFFF',
+      text: '#1978C8',
       background: '#23AFD7',
     },
     secondary: {

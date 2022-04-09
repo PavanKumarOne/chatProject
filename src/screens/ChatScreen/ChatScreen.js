@@ -44,7 +44,7 @@ export const ChatScreen = ({navigation}) => {
         enableBack
         onBackPress={() => {}}
         onUserInfoPress={() =>
-          navigation.navigate(NavigationKeys.screen.contactInfo)
+          navigation.navigate(NavigationKeys.screen.profile)
         }
       />
       <FlatList
@@ -53,7 +53,11 @@ export const ChatScreen = ({navigation}) => {
         keyExtractor={item => item.id}
       />
       <View style={styles.attachCont}>
-        <InputBox style={styles.box} border={theme.palette.secondary.secondary01} borderRadi="16" />
+        <InputBox
+          style={styles.box}
+          border={theme.palette.secondary.secondary01}
+          borderRadi="16"
+        />
       </View>
     </View>
   );

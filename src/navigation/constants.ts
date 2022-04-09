@@ -11,6 +11,7 @@ export const NavigationKeys = {
     assignedChats: 'assignedChats',
     profile: 'profile',
     contactInfo: 'contactInfo',
+    chat: 'chatScreen',
   },
   tab: {
     bottomTab: 'bottomTab',
