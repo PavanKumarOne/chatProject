@@ -8,6 +8,9 @@ import VectorImage from 'react-native-vector-image';
 import {ImagePath} from '../../utility';
 import {messages} from '../../../mocks/assignedChats';
 import {TextInput} from '../../components/atoms/textInput';
+import {TouchableOpacity} from 'react-native';
+import {FileSelectorModal} from '../../components/molecules/fileSlectorModal';
+import {useState} from 'react';
 
 const renderChatMessage = ({item}) => {
   const {message, user, name, time} = item;
@@ -21,6 +24,8 @@ export const ChatScreen = ({route, navigation}) => {
       item: {groupName, groupImage},
     } = route.params;
   }
+
+  const [showFileSelector, setShowFileSelector] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -44,14 +49,21 @@ export const ChatScreen = ({route, navigation}) => {
         renderItem={renderChatMessage}
         keyExtractor={item => item.id}
       />
-      <VectorImage source={ImagePath.add} />
       <View style={styles.attachCont}>
+        <TouchableOpacity onPress={() => setShowFileSelector(true)}>
+          <VectorImage source={ImagePath.add} />
+        </TouchableOpacity>
         <TextInput
           style={styles.box}
           border={theme.palette.secondary.secondary01}
           borderRadi="16"
+          onChangeText={() => {}}
         />
       </View>
+      <FileSelectorModal
+        isModalVisible={showFileSelector}
+        closeModal={() => setShowFileSelector(false)}
+      />
     </View>
   );
 };

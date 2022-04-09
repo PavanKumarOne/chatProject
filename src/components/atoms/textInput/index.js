@@ -13,12 +13,11 @@ export const TextInput = props => {
     <RNTextInput
       style={styles.textInput}
       onChangeText={value => {
-        setText(text);
+        setText(value);
         onChangeText(value);
       }}
       value={text}
       placeholder={placeholder}
-      placeholderStyle={theme.typography.font.primaryFont}
     />
   );
 };
@@ -29,7 +28,6 @@ const getStyles = (borderRadi, border) =>
       borderRadius: +borderRadi || 8,
       margin: 12,
       padding: 10,
-      textAlign: 'center',
       height: 45,
       width: '93%',
       borderWidth: border ? 1 : 0,
