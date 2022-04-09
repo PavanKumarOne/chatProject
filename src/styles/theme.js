@@ -48,6 +48,8 @@ const theme = {
       pinkLinear2: '#F0647DBF',
       borderColor: '#DADADA',
       blackLight: '#595959',
+      doggerBlue: '#3497F9',
+      manatee: '#8E8E93',
     },
   },
   typography: {
