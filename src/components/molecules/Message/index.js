@@ -5,10 +5,10 @@ import theme from '../../../styles/theme';
 export const Message = props => {
   return (
     <View style={styles.container}>
-      <View style={props.flag ? styles.sender : styles.reciever}>
-        {props.name && <Text style={styles.name}>{props.name}</Text>}
+      <View style={props.user ? styles.sender : styles.reciever}>
+        {props.name && <Text style={props.user?{color:theme.palette.secondary.secondary01}:{color:"red",fontSize:12}}>{props.name}</Text>}
         <View style={styles.messageContainer}>
-          <Text>
+          <Text > 
             {props.message}
             {'  '}
           </Text>
@@ -27,10 +27,6 @@ const styles = StyleSheet.create({
     padding: 6,
     margin: 8,
     borderRadius: 8,
-  },
-  name: {
-    color: 'red',
-    fontSize: 12,
   },
   messageContainer: {
     flexDirection: 'row',
