@@ -38,6 +38,9 @@ export const ImagePath = {
   persons: require('../assets/images/persons.svg'),
   camera: require('../assets/images/camera.svg'),
   groupImage: require('../assets/images/groupImage.png'),
+  image: require('../assets/images/image.svg'),
+  cameraOutline: require('../assets/images/cameraOutline.svg'),
+  add: require('../assets/images/add.svg'),
 };
 
 export const Colors = {
