@@ -32,10 +32,12 @@ export const AllPatientsScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Header onBackPress={() => {}} title={'All Patients'} />
-      <TextInput
-        placeholder="Search by patient name"
-        onChangeText={onChangeText}
-      />
+      <View style={styles.search}>
+        <TextInput
+          placeholder="Search by patient name"
+          onChangeText={onChangeText}
+        />
+      </View>
       <FlatList
         data={chatGroups}
         renderItem={({item}) => renderUserGroups(item, navigation)}
@@ -61,5 +63,8 @@ const styles = StyleSheet.create({
   },
   separater: {
     marginVertical: ResponsiveSize(16),
+  },
+  search: {
+    backgroundColor: theme.palette.borderColors.border01,
   },
 });

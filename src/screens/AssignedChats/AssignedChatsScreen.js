@@ -1,23 +1,26 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import { InputBox } from '../../components/atoms/input';
 import {Heading} from '../../components/atoms/text/heading';
+import {TextInput} from '../../components/atoms/textInput';
 import {Header} from '../../components/molecules/header';
 import theme from '../../styles/theme';
 
 export const AssignedChatsScreen = () => {
-
-  const onChangeText=(data)=>{
+  const onChangeText = data => {
     console.log(data);
-  }
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.InputBox}>
-        <InputBox placeholder="Search by patient name" border={theme.palette.neutral.white} onChangeText={onChangeText} />
+        <TextInput
+          placeholder="Search by patient name"
+          border={theme.palette.neutral.white}
+          onChangeText={onChangeText}
+        />
       </View>
-        <Header onBackPress={() => {}} title={'Assigned Chats'} />
-        <Heading fontWeight="bold">Assigned Chats</Heading>
+      <Header onBackPress={() => {}} title={'Assigned Chats'} />
+      <Heading fontWeight="bold">Assigned Chats</Heading>
     </View>
   );
 };
@@ -30,7 +33,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  InputBox:{
-    backgroundColor:theme.palette.borderColors.border01
-  }
+  InputBox: {
+    backgroundColor: theme.palette.borderColors.border01,
+  },
 });

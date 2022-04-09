@@ -1,70 +1,25 @@
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import React from 'react';
 import {Message} from '../../components/molecules/Message';
 import theme from '../../styles/theme';
-import {InputBox} from '../../components/atoms/input';
 import {Header} from '../../components/molecules/header';
 import {NavigationKeys} from '../../navigation/constants';
 import VectorImage from 'react-native-vector-image';
 import {ImagePath} from '../../utility';
+import {messages} from '../../../mocks/assignedChats';
+import {TextInput} from '../../components/atoms/textInput';
 
 const renderChatMessage = ({item}) => {
-  const {id, message, user, name, time} = item;
+  const {message, user, name, time} = item;
 
-  return <Message message={message} user={user} name={name} time={time}  />;
+  return <Message message={message} user={user} name={name} time={time} />;
 };
 
 export const ChatScreen = ({route, navigation}) => {
-  const array = [
-    {
-      id: 1,
-      name: 'Pummy',
-      message: 'Hii!',
-      user: false,
-      time: '10:10',
-    },
-    {
-      id: 1,
-      name: 'oneCare',
-      message: 'Hii Pummy ,Thank you for contacting us!',
-      user: true,
-      time: '10:10',
-    },
-    {
-      id: 3,
-      name: 'oneCare',
-      message: 'Please!,provide these details,for me to help you',
-      user: true,
-      time: '10:10',
-    },
-    {
-      id: 4,
-      name: 'oneCare',
-      message: 'your name!',
-      user: true,
-      time: '10:10',
-    },
-    {
-      id: 5,
-      name: 'Pummy',
-      message: 'Pummy Sharma',
-      user: false,
-      time: '10:10',
-    },
-    {
-      id: 1,
-      name: 'oneCare',
-      message: 'your phone number',
-      user: true,
-      time: '10:10',
-    },
-  ];
-
-
-  console.log(route, 'route');
-  var item;
-  if(route.params){
-   var {item:{groupName,groupImage}}=route.params
+  if (route.params) {
+    var {
+      item: {groupName, groupImage},
+    } = route.params;
   }
 
   return (
@@ -74,7 +29,7 @@ export const ChatScreen = ({route, navigation}) => {
         userInfoConfig={{
           heading: groupName,
           subHeading: 'type here for more info',
-          image:{groupImage}
+          image: {groupImage},
         }}
         enableBack
         onBackPress={() =>
@@ -85,14 +40,13 @@ export const ChatScreen = ({route, navigation}) => {
         }
       />
       <FlatList
-        data={array}
+        data={messages}
         renderItem={renderChatMessage}
         keyExtractor={item => item.id}
       />
       <VectorImage source={ImagePath.add} />
       <View style={styles.attachCont}>
-        
-        <InputBox
+        <TextInput
           style={styles.box}
           border={theme.palette.secondary.secondary01}
           borderRadi="16"
@@ -112,7 +66,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     paddingHorizontal: 16,
   },
   header: {
