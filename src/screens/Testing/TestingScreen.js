@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Heading} from '../components/atoms/text/heading';
-import {Header} from '../components/molecules/header';
+import {Heading} from '../../components/atoms/text/heading';
+import {Header} from '../../components/molecules/header';
 
-export const HomeScreen = () => {
+export const TestingScreen = () => {
   return (
     <View style={styles.container}>
-      <Header enableBack onBackPress={() => {}} title={'Add Health Data'} />
-      <Heading fontWeight="bold">heading</Heading>
+      <Header enableBack onBackPress={() => {}} title={'Testing screen'} />
+      <Heading fontWeight="bold">Testing screen</Heading>
     </View>
   );
 };

@@ -1,11 +1,14 @@
 export const NavigationKeys = {
   stacks: {
-    authStack: 'authStack',
-    homeStack: 'homeStack',
+    assignedChats: 'assignedChats',
+    allPatients: 'allPatients',
+    profile: 'profile',
+    testing: 'testing',
   },
   screen: {
-    homeScreen: 'homeScreen',
-    onBoardingScreen: 'onBoardingScreen',
+    allPatient: 'allPatient',
+    assignedChats: 'assignedChats',
+    profile: 'profile',
   },
   tab: {
     bottomTab: 'bottomTab',
