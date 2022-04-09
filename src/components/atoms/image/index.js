@@ -12,6 +12,7 @@ export const Image = props => {
     backgroundColor,
     loadingIndicatorSource,
     isRound = false,
+    style = [],
   } = props;
 
   const styles = getStyles(
@@ -25,11 +26,7 @@ export const Image = props => {
     loadingIndicatorSource,
   );
 
-  return (
-    <View style={styles.container}>
-      <RNImage style={styles.tinyLogo} source={imageSource} />
-    </View>
-  );
+  return <RNImage style={[styles.image, style]} source={imageSource} />;
 };
 
 const getStyles = (
@@ -42,10 +39,7 @@ const getStyles = (
   backgroundColor,
 ) =>
   StyleSheet.create({
-    container: {
-      paddingTop: 50,
-    },
-    tinyLogo: {
+    image: {
       uri: uri,
       width: width,
       height: height,

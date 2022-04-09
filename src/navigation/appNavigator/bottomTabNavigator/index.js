@@ -2,7 +2,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationKeys} from '../../constants';
 import {AllPatientsStackNavigator} from './AllPatientsNavigator';
-import {AssignedChatsStackNavigator} from './AssignedChats';
+import {AssignedChatsStackNavigator} from './AssignedChatsNavigator';
 import {ProfileStackNavigator} from './ProfileNavigator';
 import {TestingStackStackNavigator} from './TestingNavigator';
 import {Colors, ResponsiveSize, ImagePath, Fonts} from '../../../utility';
