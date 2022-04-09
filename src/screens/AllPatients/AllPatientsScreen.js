@@ -6,6 +6,7 @@ import {TextInput} from '../../components/atoms/textInput';
 import theme from '../../styles/theme';
 import {ResponsiveSize} from '../../utility';
 import {chatGroups} from '../../../mocks/allPatientscreen';
+import {Line} from '../../components/atoms/line';
 
 const renderUserGroups = (item, navigation) => {
   const {groupName, message, flag, groupImage, date} = item;
@@ -37,7 +38,7 @@ export const AllPatientsScreen = ({navigation}) => {
       <FlatList
         data={chatGroups}
         renderItem={({item}) => renderUserGroups(item, navigation)}
-        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        ItemSeparatorComponent={() => <Line style={styles.separater} />}
         keyExtractor={(item, index) => `${item.groupName} ${index}`}
         contentContainerStyle={styles.userGroupList}
       />
@@ -53,13 +54,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  separator: {
-    borderBottomColor: theme.palette.neutral.manatee,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginVertical: ResponsiveSize(16),
-  },
   userGroupList: {
     paddingVertical: ResponsiveSize(16),
     marginHorizontal: ResponsiveSize(16),
+  },
+  separater: {
+    marginVertical: ResponsiveSize(16),
   },
 });

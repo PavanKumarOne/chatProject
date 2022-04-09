@@ -13,6 +13,7 @@ export const Image = props => {
     loadingIndicatorSource,
     isRound = false,
     style = [],
+    split,
   } = props;
 
   const styles = getStyles(
@@ -24,6 +25,7 @@ export const Image = props => {
     borderRadius,
     backgroundColor,
     loadingIndicatorSource,
+    split,
   );
 
   return <RNImage style={[styles.image, style]} source={imageSource} />;
