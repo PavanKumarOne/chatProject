@@ -8,6 +8,7 @@ import {ResponsiveSize} from '../../utility';
 import {chatGroups} from '../../../mocks/allPatientscreen';
 import {Line} from '../../components/atoms/line';
 import {NavigationKeys} from '../../navigation/constants';
+import {Loader} from '../../components/atoms/loader';
 
 const renderUserGroups = (item, navigation) => {
   const {groupName, message, flag, groupImage, date} = item;
@@ -27,17 +28,28 @@ const renderUserGroups = (item, navigation) => {
 export const AllPatientsScreen = ({navigation}) => {
   const debouncer = useRef();
   const [data, setData] = useState(chatGroups);
+  const [loading, setLoading] = useState(false);
 
   function onChangeText(txt) {
     clearTimeout(debouncer.current);
+
+    setLoading(true);
     debouncer.current = setTimeout(() => {
-      const filteredData = data.filter(group => group.groupName.includes(txt));
+      const dataCopy = [...chatGroups];
+      const filteredData = dataCopy.filter(group => {
+        const groupName = group.groupName.toLowerCase();
+        const searchedText = txt.toLowerCase();
+
+        return groupName.includes(searchedText);
+      });
       setData(filteredData);
+      setLoading(false);
     }, 500);
   }
 
   return (
     <View style={styles.container}>
+      {loading && <Loader />}
       <Header onBackPress={() => {}} title={'All Patients'} />
       <View style={styles.search}>
         <TextInput
