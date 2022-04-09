@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Heading} from '../components/atoms/text/heading';
-import Header from '../components/molecules/header';
+import {Header} from '../components/molecules/header';
 
 export const HomeScreen = () => {
   return (
