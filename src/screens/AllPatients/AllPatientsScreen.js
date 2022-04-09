@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Header} from '../../components/molecules/header';
 import {UserInfoRow} from '../../components/molecules/userInfoRow';
@@ -8,6 +8,7 @@ import {ResponsiveSize} from '../../utility';
 import {chatGroups} from '../../../mocks/allPatientscreen';
 import {Line} from '../../components/atoms/line';
 import {NavigationKeys} from '../../navigation/constants';
+import {Loader} from '../../components/atoms/loader';
 
 const renderUserGroups = (item, navigation) => {
   const {groupName, message, flag, groupImage, date} = item;
@@ -25,19 +26,39 @@ const renderUserGroups = (item, navigation) => {
 };
 
 export const AllPatientsScreen = ({navigation}) => {
-  const onChangeText = data => {
-    //TODO: Pummy need to implement search logic
-  };
+  const debouncer = useRef();
+  const [data, setData] = useState(chatGroups);
+  const [loading, setLoading] = useState(false);
+
+  function onChangeText(txt) {
+    clearTimeout(debouncer.current);
+
+    setLoading(true);
+    debouncer.current = setTimeout(() => {
+      const dataCopy = [...chatGroups];
+      const filteredData = dataCopy.filter(group => {
+        const groupName = group.groupName.toLowerCase();
+        const searchedText = txt.toLowerCase();
+
+        return groupName.includes(searchedText);
+      });
+      setData(filteredData);
+      setLoading(false);
+    }, 500);
+  }
 
   return (
     <View style={styles.container}>
+      {loading && <Loader />}
       <Header onBackPress={() => {}} title={'All Patients'} />
-      <TextInput
-        placeholder="Search by patient name"
-        onChangeText={onChangeText}
-      />
+      <View style={styles.search}>
+        <TextInput
+          placeholder="Search by group name"
+          onChangeText={onChangeText}
+        />
+      </View>
       <FlatList
-        data={chatGroups}
+        data={data}
         renderItem={({item}) => renderUserGroups(item, navigation)}
         ItemSeparatorComponent={() => <Line style={styles.separater} />}
         keyExtractor={(item, index) => `${item.groupName} ${index}`}
@@ -61,5 +82,8 @@ const styles = StyleSheet.create({
   },
   separater: {
     marginVertical: ResponsiveSize(16),
+  },
+  search: {
+    backgroundColor: theme.palette.borderColors.border01,
   },
 });

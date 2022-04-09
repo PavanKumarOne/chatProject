@@ -1,27 +1,19 @@
 import {Platform} from 'react-native';
 
-const isAndroid = () => {
+export const isAndroid = () => {
   return Platform.OS === 'android';
 };
 
-const isIOS = () => {
+export const isIOS = () => {
   return Platform.OS === 'ios';
 };
 
-const isWeb = () => {
+export const isWeb = () => {
   return Platform.OS === 'web';
 };
 
-const isMobile = () => {
+export const isMobile = () => {
   return isAndroid() || isIOS();
 };
 
-const getPlatform = () => Platform.OS;
-
-export const PlatformUtils = {
-  isAndroid,
-  isIOS,
-  isWeb,
-  isMobile,
-  getPlatform,
-};
+export const getPlatform = () => Platform.OS;
