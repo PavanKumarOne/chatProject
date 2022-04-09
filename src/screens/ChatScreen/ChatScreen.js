@@ -1,12 +1,8 @@
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import React from 'react';
 import {Message} from '../../components/molecules/Message';
-import {array} from 'prop-types';
 import theme from '../../styles/theme';
-import {InputBox} from '../../components/atoms/input';
-import {ImagePath} from '../../utility';
-import VectorImage from 'react-native-vector-image';
-import {UserInfoRow} from '../../components/molecules/userInfoRow';
+import { InputBox } from '../../components/atoms/input';
 import {Header} from '../../components/molecules/header';
 import {NavigationKeys} from '../../navigation/constants';
 
@@ -16,19 +12,48 @@ const renderChatMessage = ({item}) => {
   return <Message message={message} flag={flag} name={name} time={time} />;
 };
 
-export const ChatScreen = ({navigation}) => {
+export const ChatScreen = ({navigation, route}) => {
   const array = [
     {
       id: 1,
       name: 'Pummy',
-      message: 'Hi ,How are you',
-      flag: true,
+      message: 'Hii!',
+      user: false,
       time: '10:10',
     },
     {
       id: 2,
-      message: 'Hi ,I am good',
-      flag: false,
+      name: 'oneCare',
+      message: 'Hii Pummy ,Thank you for contacting us!',
+      user: true,
+      time: '10:10',
+    },
+    {
+      id: 3,
+      name: 'oneCare',
+      message: 'Please!,provide these details,for me to help you',
+      user: true,
+      time: '10:10',
+    },
+    {
+      id: 4,
+      name: 'oneCare',
+      message: 'your name!',
+      user: true,
+      time: '10:10',
+    },
+    {
+      id: 5,
+      name: 'Pummy',
+      message: 'Pummy Sharma',
+      user: false,
+      time: '10:10',
+    },
+    {
+      id: 6,
+      name: 'oneCare',
+      message: 'your phone number',
+      user: true,
       time: '10:10',
     },
   ];

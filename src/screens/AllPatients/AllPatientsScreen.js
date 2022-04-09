@@ -18,7 +18,7 @@ const renderUserGroups = (item, navigation) => {
       image={groupImage}
       headingRightText={date}
       flag={flag}
-      onPress={navigation.navigate('chatScreen')}
+      onPress={() => navigation.navigate('chatScreen', {item})}
     />
   );
 };
