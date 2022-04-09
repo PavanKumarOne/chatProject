@@ -1,9 +1,10 @@
-import {BASE_URL} from './apiPathConfig';
 import axios from 'axios';
 import {store} from './store';
 import {request, response} from './interceptor';
 
 export const contentType = 'application/json';
+
+const BASE_URL = 'http://165.22.219.188:3000/v1/';
 
 export function apiConfig() {
   const state = store.getState();
