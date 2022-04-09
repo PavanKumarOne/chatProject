@@ -10,9 +10,27 @@ import PropTypes from 'prop-types';
 import theme from '../../../styles/theme';
 import {Paragraph} from '../text/paragraph';
 import {ResponsiveSize} from '../../../utility';
+import {Label} from '../text/label';
+import {Title} from '../text/title';
+import {Heading} from '../text/heading';
+import {SubHeading} from '../text/subHeading';
 
-const Button = props => {
-  const {buttonText, buttonType, onPress} = props;
+const buttonTypeText = {
+  paragraph: Paragraph,
+  label: Label,
+  title: Title,
+  heading: Heading,
+  subHeading: SubHeading,
+};
+
+export const Button = props => {
+  const {
+    buttonText,
+    buttonType = 'primary',
+    onPress,
+    textType = 'paragraph',
+  } = props;
+
   const [loading, setLoading] = useState(false);
 
   const {text, background} = theme.button[buttonType];
@@ -32,15 +50,20 @@ const Button = props => {
     setLoading(false);
   };
 
+  const TextContainer = buttonTypeText[textType];
+
   return (
-    <TouchableOpacity onPress={onButtonPress} disabled={loading}>
+    <TouchableOpacity
+      style={styles.btn}
+      onPress={onButtonPress}
+      disabled={loading}>
       <Container style={styles.continueContainer} {...containerProps}>
         {loading ? (
           <ActivityIndicator color={theme.palette.neutral.white} />
         ) : (
-          <Paragraph fontWeight="medium" textColor={text}>
+          <TextContainer fontWeight="medium" textColor={text}>
             {buttonText}
-          </Paragraph>
+          </TextContainer>
         )}
       </Container>
     </TouchableOpacity>
