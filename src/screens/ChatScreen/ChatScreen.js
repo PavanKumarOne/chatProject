@@ -4,16 +4,19 @@ import {Message} from '../../components/molecules/Message';
 import {array} from 'prop-types';
 import theme from '../../styles/theme';
 import {InputBox} from '../../components/atoms/input';
-import { ImagePath } from '../../utility';
+import {ImagePath} from '../../utility';
 import VectorImage from 'react-native-vector-image';
-console.log(ImagePath.plus);
+import {UserInfoRow} from '../../components/molecules/userInfoRow';
+import {Header} from '../../components/molecules/header';
+import {NavigationKeys} from '../../navigation/constants';
+
 const renderChatMessage = ({item}) => {
   const {id, message, flag, name, time} = item;
 
   return <Message message={message} flag={flag} name={name} time={time} />;
 };
 
-export const ChatScreen = () => {
+export const ChatScreen = ({navigation}) => {
   const array = [
     {
       id: 1,
@@ -32,14 +35,25 @@ export const ChatScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Header
+        style={styles.header}
+        userInfoConfig={{
+          heading: 'group1',
+          subHeading: 'type here for more info',
+        }}
+        enableBack
+        onBackPress={() => {}}
+        onUserInfoPress={() =>
+          navigation.navigate(NavigationKeys.screen.contactInfo)
+        }
+      />
       <FlatList
         data={array}
         renderItem={renderChatMessage}
         keyExtractor={item => item.id}
       />
       <View style={styles.attachCont}>
-        <VectorImage source={ImagePath.plus} />
-        <InputBox style={styles.box} border="black" />
+        <InputBox style={styles.box} border={theme.palette.secondary.secondary01} borderRadi="16" />
       </View>
     </View>
   );
@@ -57,5 +71,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
+  },
+  header: {
+    backgroundColor: theme.palette.background,
   },
 });
