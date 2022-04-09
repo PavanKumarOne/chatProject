@@ -3,12 +3,14 @@ import {View, StyleSheet} from 'react-native';
 import {Heading} from '../../components/atoms/text/heading';
 import {Image} from '../../components/atoms/image';
 import {Header} from '../../components/molecules/header';
+import { Userprofile } from './userprofile/index';
 
 export const TestingScreen = () => {
   return (
     <View style={styles.container}>
       <Header enableBack onBackPress={() => {}} title={'Testing screen'} />
       <Image imageSource={{uri: 'https://reactnative.dev/img/tiny_logo.png'}} />
+      <Userprofile />
       <Heading fontWeight="bold">Testing screen</Heading>
     </View>
   );
