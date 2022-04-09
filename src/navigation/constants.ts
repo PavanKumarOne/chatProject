@@ -10,6 +10,8 @@ export const NavigationKeys = {
     allPatient: 'allPatient',
     assignedChats: 'assignedChats',
     profile: 'profile',
+    contactInfo: 'contactInfo',
+    chat: 'chatScreen',
   },
   tab: {
     bottomTab: 'bottomTab',

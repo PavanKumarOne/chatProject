@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationKeys} from '../constants';
 import {ProfileScreen} from '../../screens/Profile';
+import {ChatScreen} from '../../screens/ChatScreen/ChatScreen';
 
 const CommonStack = createNativeStackNavigator();
 
@@ -9,11 +10,11 @@ const CommonStack = createNativeStackNavigator();
 export const CommonStackNavigator = () => {
   return (
     <CommonStack.Navigator>
-      <CommonStack.Screen
-        name={NavigationKeys.screen.profile}
-        component={ProfileScreen}
+      {/* <CommonStack.Screen
+        name={NavigationKeys.screen.chat}
+        component={ChatScreen}
         options={{headerShown: false}}
-      />
+      /> */}
     </CommonStack.Navigator>
   );
 };

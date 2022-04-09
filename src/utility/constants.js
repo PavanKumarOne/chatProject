@@ -36,6 +36,7 @@ export const ImagePath = {
   blueFrame: require('../assets/images/blueFrame.png'),
   chat: require('../assets/images/chat.svg'),
   persons: require('../assets/images/persons.svg'),
+  plus:require('../assets/images/Add.svg'),
   camera: require('../assets/images/camera.svg'),
   groupImage: require('../assets/images/groupImage.png'),
 };
