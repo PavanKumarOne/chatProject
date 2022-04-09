@@ -7,6 +7,7 @@ import theme from '../../styles/theme';
 import {ResponsiveSize} from '../../utility';
 import {chatGroups} from '../../../mocks/allPatientscreen';
 import {Line} from '../../components/atoms/line';
+import {NavigationKeys} from '../../navigation/constants';
 
 const renderUserGroups = (item, navigation) => {
   const {groupName, message, flag, groupImage, date} = item;
@@ -18,7 +19,7 @@ const renderUserGroups = (item, navigation) => {
       image={groupImage}
       headingRightText={date}
       flag={flag}
-      onPress={navigation.navigate('chatScreen')}
+      onPress={() => navigation.navigate(NavigationKeys.screen.chat, {item})}
     />
   );
 };

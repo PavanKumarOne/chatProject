@@ -21,6 +21,10 @@ export const UserInfoRow = props => {
     flag,
     doctype,
     onPress = null,
+    imageSource,
+    showArrow = true,
+    style,
+    imageStyle = null,
   } = props;
 
   const Container = onPress ? TouchableOpacity : View;
@@ -30,11 +34,11 @@ export const UserInfoRow = props => {
     <Container style={styles.rowContainer} {...containerProps}>
       <Image
         style={styles.image}
-        imageSource={ImagePath.groupImage}
-        width={52}
-        height={52}
+        imageSource={imageSource || ImagePath.groupImage}
+        width={imageStyle ? imageStyle.width : 52}
+        height={imageStyle ? imageStyle.height : 52}
       />
-      <View style={styles.midContent}>
+      <View style={[styles.midContent, style]}>
         <View style={styles.rowContainer}>
           <SubHeading textColor={theme.palette.neutral.black}>
             {heading}
@@ -61,11 +65,13 @@ export const UserInfoRow = props => {
           {flag && <Flag value={flag} />}
         </View>
       </View>
-      <VectorImage
-        source={ImagePath.rightArrow}
-        resizeMode={'contain'}
-        style={styles.rightIcon}
-      />
+      {showArrow && (
+        <VectorImage
+          source={ImagePath.rightArrow}
+          resizeMode={'contain'}
+          style={styles.rightIcon}
+        />
+      )}
     </Container>
   );
 };
