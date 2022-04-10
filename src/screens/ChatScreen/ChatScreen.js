@@ -37,11 +37,8 @@ export const ChatScreen = ({route, navigation}) => {
           image: groupImage,
         }}
         enableBack
-        onBackPress={() =>
-          navigation.navigate(NavigationKeys.screen.allPatient)
-        }
         onUserInfoPress={() =>
-          navigation.navigate(NavigationKeys.screen.profile)
+          navigation.navigate(NavigationKeys.screen.contactInfo)
         }
       />
       <FlatList
