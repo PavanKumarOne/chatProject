@@ -2,6 +2,7 @@ const theme = {
   palette: {
     background: '#FFFFFF',
     pageBackground: '#F4FBFD',
+    chatBackground: '#DCF7C5',
     danger: '#F0647D',
     primary: {
       primary01: '#23AFD7', //primary blue
@@ -17,6 +18,7 @@ const theme = {
       primaryTextColor: '#595959',
       secondaryTextColor: '#8C8C8C',
       disabledTextColor: '#BFBFBF',
+      timeTextColor: '#8E8E93',
     },
     borderColors: {
       border01: '#D9D9D9',
@@ -48,6 +50,8 @@ const theme = {
       blackLight: '#595959',
       doggerBlue: '#3497F9',
       manatee: '#8E8E93',
+      athensGray: '#ECECED',
+      azureRadiance: '#007AFF',
     },
   },
   typography: {

@@ -1,40 +1,37 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, TextInput as RNTextInput} from 'react-native';
+import {StyleSheet, TextInput as RNTextInput} from 'react-native';
 import theme from '../../../styles/theme';
 
-export const TextInput = prop => {
+export const TextInput = props => {
+  const {borderRadi, border, onChangeText, placeholder} = props;
+
   const [text, setText] = useState('');
 
+  const styles = getStyles(borderRadi, border);
+
   return (
-    <View style={styles.container}>
-      <RNTextInput
-        style={styles.input}
-        onChangeText={text => {
-          setText(text);
-          prop.onChangeText(text);
-        }}
-        value={text}
-        placeholder={prop.placeholder}
-        placeholderStyle={theme.typography.font.primaryFont}
-      />
-    </View>
+    <RNTextInput
+      style={styles.textInput}
+      onChangeText={value => {
+        setText(value);
+        onChangeText(value);
+      }}
+      value={text}
+      placeholder={placeholder}
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderRadius: 8,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    textAlign: 'center',
-    height: 45,
-    width: '93%',
-    backgroundColor: theme.palette.neutral.white,
-    borderColor: theme.palette.neutral.white,
-  },
-  container: {
-    backgroundColor: theme.palette.borderColors.border01,
-  },
-});
+const getStyles = (borderRadi, border) =>
+  StyleSheet.create({
+    textInput: {
+      borderRadius: +borderRadi || 8,
+      margin: 12,
+      padding: 10,
+      height: 45,
+      width: '93%',
+      borderWidth: border ? 1 : 0,
+      backgroundColor: theme.palette.neutral.white,
+      borderColor: border,
+    },
+  });

@@ -1,15 +1,19 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Heading} from '../../components/atoms/text/heading';
-import {Image} from '../../components/atoms/image';
-import {Header} from '../../components/molecules/header';
+import React, {useState} from 'react';
+import {View, StyleSheet, Button} from 'react-native';
+import {FileSelectorModal} from '../../components/molecules/fileSlectorModal';
 
 export const TestingScreen = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <View style={styles.container}>
-      <Header enableBack onBackPress={() => {}} title={'Testing screen'} />
-      <Image imageSource={{uri: 'https://reactnative.dev/img/tiny_logo.png'}} />
-      <Heading fontWeight="bold">Testing screen</Heading>
+      <Button
+        title="Show modal"
+        onPress={() => setIsModalVisible(!isModalVisible)}
+      />
+      <FileSelectorModal
+        isModalVisible={isModalVisible}
+        closeModal={() => setIsModalVisible(false)}
+      />
     </View>
   );
 };

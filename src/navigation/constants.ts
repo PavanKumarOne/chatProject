@@ -2,7 +2,7 @@ export const NavigationKeys = {
   stacks: {
     assignedChats: 'assignedChats',
     allPatients: 'allPatients',
-    profile: 'profile',
+    profile: 'profileStack',
     testing: 'testing',
     common: 'common',
   },
@@ -11,6 +11,8 @@ export const NavigationKeys = {
     assignedChats: 'assignedChats',
     profile: 'profile',
     contactInfo: 'constactInfo',
+    login: 'login',
+    chat: 'chatScreen',
   },
   tab: {
     bottomTab: 'bottomTab',
