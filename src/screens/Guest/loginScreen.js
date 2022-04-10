@@ -15,20 +15,33 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextInput} from '../../components/atoms/textInput';
 import theme from '../../styles/theme';
+import { ApiHandler } from '../../network/apiClient';
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
+      email: '',
       password: '',
       errors: '',
     };
   }
 
   onSubmit = () => {
-    const {errors, userName, password} = this.state;
+    const {errors, email, password} = this.state;
     const {navigation} = this.props;
+
+    const payload={
+        "email": email,
+        "password": password,
+        "deviceToken":"test12314",
+        "appVersion":"0.10",
+        "deviceVersion":"13.01",
+        "deviceOs":"Andriod"
+    }
+
+console.log(payload);
+    // ApiHandler({endPoint: 'auth/applogin', method: 'post', reqParam: payload});
 
     //TODO: call api, set error if error comes
   };
@@ -49,7 +62,7 @@ class LoginScreen extends Component {
             style={styles.phoneInput}
             onChangeText={text => this.setState({userName: text})}
             value={userName}
-            placeholder={'User Name'}
+            placeholder={'Email'}
             placeholderTextColor={Colors.placeholder}
           />
           <TextInput

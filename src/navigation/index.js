@@ -4,7 +4,7 @@ import {AppStackNavigator} from './appNavigator';
 import {AuthStackNavigator} from './guestNavigator/AuthStackNavigator';
 
 export default function RootNavigator() {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <NavigationContainer>
