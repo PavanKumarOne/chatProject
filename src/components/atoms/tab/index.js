@@ -3,7 +3,8 @@ import {useWindowDimensions, StyleSheet} from 'react-native';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import PropTypes from 'prop-types';
 import theme from '../../../styles/theme';
-import {Paragraph, Loader} from '../../../components';
+import {Paragraph} from '../../atoms/text/paragraph';
+import {Loader} from '../../atoms/loader';
 import {useEffect} from 'react';
 
 const getRoutesAndScenes = (tabConfig, loading) => {

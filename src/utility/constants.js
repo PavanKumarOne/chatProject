@@ -39,6 +39,8 @@ export const ImagePath = {
   // plus:require('../assets/images/Add.svg'),
   camera: require('../assets/images/camera.svg'),
   groupImage: require('../assets/images/groupImage.png'),
+  pdf: require('../assets/images/pdf.svg'),
+  sample2: require('../assets/images/unsplash_kcA-c3f_3FE.png'),
   image: require('../assets/images/image.svg'),
   cameraOutline: require('../assets/images/cameraOutline.svg'),
   add: require('../assets/images/add.svg'),

@@ -16,6 +16,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import {TextInput} from '../../components/atoms/textInput';
 import theme from '../../styles/theme';
 import { ApiHandler } from '../../network/apiClient';
+import {Platform} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
+import { isAndroid } from '../../utility/platformUtils';
+
+
+let appVersion = DeviceInfo.getReadableVersion();
+let deviceVersion = DeviceInfo.getSystemVersion();
+let deviceOs = isAndroid ? 'android' : 'ios';
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -26,6 +34,9 @@ class LoginScreen extends Component {
       errors: '',
     };
   }
+
+  
+
 
   onSubmit = () => {
     const {errors, email, password} = this.state;
@@ -40,10 +51,8 @@ class LoginScreen extends Component {
         "deviceOs":"Andriod"
     }
 
-console.log(payload);
-    // ApiHandler({endPoint: 'auth/applogin', method: 'post', reqParam: payload});
-
-    //TODO: call api, set error if error comes
+    let token=ApiHandler({endPoint: 'auth/applogin', method: 'post', reqParam: payload});
+    console.log('token',token);
   };
 
   render() {
