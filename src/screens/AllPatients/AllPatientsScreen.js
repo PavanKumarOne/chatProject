@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Header} from '../../components/molecules/header';
 import {UserInfoRow} from '../../components/molecules/userInfoRow';
@@ -9,6 +9,7 @@ import {chatGroups} from '../../../mocks/allPatientscreen';
 import {Line} from '../../components/atoms/line';
 import {NavigationKeys} from '../../navigation/constants';
 import {Loader} from '../../components/atoms/loader';
+import {FirebaseService} from '../../services/firebase';
 
 const renderUserGroups = (item, navigation) => {
   const {groupName, message, flag, groupImage, date} = item;
@@ -29,6 +30,11 @@ export const AllPatientsScreen = ({navigation}) => {
   const debouncer = useRef();
   const [data, setData] = useState(chatGroups);
   const [loading, setLoading] = useState(false);
+
+  // TODO: Shivam: add collection name
+  useEffect(() => {
+    // const data = FirebaseService.getCollectionData('');
+  }, []);
 
   function onChangeText(txt) {
     clearTimeout(debouncer.current);
