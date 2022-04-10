@@ -37,6 +37,7 @@ export const ChatScreen = ({route, navigation}) => {
           image: groupImage,
         }}
         enableBack
+        onBackPress={navigation.goBack}
         onUserInfoPress={() =>
           navigation.navigate(NavigationKeys.screen.contactInfo)
         }
