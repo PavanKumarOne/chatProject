@@ -2,10 +2,11 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Image} from '../../components/atoms/image';
 import {Heading} from '../../components/atoms/text/heading';
-import {UserInfoRow} from '../../components/atoms/userInfoRow';
+import {ProfileRow} from '../../components/atoms/profileRow';
 import {Button} from '../../components/atoms/button/index';
 import {Line} from '../../components/atoms/line';
 import {ImagePath, ResponsiveSize} from '../../utility';
+import theme from '../../styles/theme';
 
 const data = {
   name: 'Pavan Kumar',
@@ -27,9 +28,9 @@ export const ProfileScreen = () => {
           <Image imageSource={ImagePath.groupImage} isRound split={split} />
           <Heading styles={styles.heading}>{data.name}</Heading>
         </View>
-        <UserInfoRow heading={data.email} value={data.emailId} />
+        <ProfileRow heading={data.email} value={data.emailId} />
         <Line />
-        <UserInfoRow heading={data.number} value={data.mobile} />
+        <ProfileRow heading={data.number} value={data.mobile} />
         <View style={styles.logOut}>
           <Button
             onPress={() => {}}
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logOut: {
-    backgroundColor: 'white',
+    backgroundColor: theme.palette.neutral.white,
     padding: ResponsiveSize(16),
     marginTop: ResponsiveSize(16),
   },

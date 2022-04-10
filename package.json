@@ -20,6 +20,8 @@
     "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-native": "0.67.0",
+    "react-native-image-view": "^2.1.9",
+    "react-native-pager-view": "^5.4.15",
     "react-native-document-picker": "^8.1.0",
     "react-native-image-crop-picker": "^0.37.3",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
