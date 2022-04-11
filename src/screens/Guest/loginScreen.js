@@ -4,10 +4,12 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Switch,
   Linking,
   ActivityIndicator,
 } from 'react-native';
+
+import {login, logout} from '../../redux/actions/action';
+
 import {Colors, Fonts, ImagePath, ResponsiveSize} from '../../utility';
 import VectorImage from 'react-native-vector-image';
 import {Header} from '../../components/molecules/header';
@@ -15,15 +17,17 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextInput} from '../../components/atoms/textInput';
 import theme from '../../styles/theme';
-import { ApiHandler } from '../../network/apiClient';
-import {Platform} from 'react-native';
+import {ApiHandler} from '../../network/apiClient';
 import DeviceInfo from 'react-native-device-info';
-import { isAndroid } from '../../utility/platformUtils';
-
-
+import {isAndroid} from '../../utility/platformUtils';
+import {Logger} from '../../utility/logger';
+import {HelperService} from '../../services/helperService';
+import {connect} from 'react-redux';
 let appVersion = DeviceInfo.getReadableVersion();
 let deviceVersion = DeviceInfo.getSystemVersion();
 let deviceOs = isAndroid ? 'android' : 'ios';
+
+console.log("StorageToken",HelperService.getToken)
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -35,28 +39,41 @@ class LoginScreen extends Component {
     };
   }
 
-  
-
-
-  onSubmit = () => {
+  onSubmit = async () => {
+    console.log(this.props.isLoggedIn);
     const {errors, email, password} = this.state;
     const {navigation} = this.props;
 
-    const payload={
-        "email": email,
-        "password": password,
-        "deviceToken":"test12314",
-        "appVersion":"0.10",
-        "deviceVersion":"13.01",
-        "deviceOs":"Andriod"
+    const payload = {
+      email: email,
+      password: password,
+      deviceToken: 'test12314',
+      appVersion: appVersion,
+      deviceVersion: deviceVersion,
+      deviceOs: deviceOs,
+    };
+    console.log(payload);
+
+    try {
+      let token = await ApiHandler({
+        endPoint: 'auth/applogin',
+        method: 'post',
+        reqParam: payload,
+      });
+
+      //set is logged in true in reducer
+
+      console.log(token.data.data.token);
+      HelperService.setToken(token.data.data.token);
+      this.props.login();
+
+      console.log("StorageToken",HelperService.getToken())
+    } catch (e) {
+      Logger.error(e.message);
     }
-
-    let token=ApiHandler({endPoint: 'auth/applogin', method: 'post', reqParam: payload});
-    console.log('token',token);
   };
-
   render() {
-    const {userName, password, errors} = this.state;
+    const {email, password, errors} = this.state;
     const {navigation, loading} = this.props;
     return (
       <View style={styles.container}>
@@ -69,8 +86,8 @@ class LoginScreen extends Component {
           />
           <TextInput
             style={styles.phoneInput}
-            onChangeText={text => this.setState({userName: text})}
-            value={userName}
+            onChangeText={text => this.setState({email: text})}
+            value={email}
             placeholder={'Email'}
             placeholderTextColor={Colors.placeholder}
           />
@@ -109,7 +126,17 @@ class LoginScreen extends Component {
   }
 }
 
-export default LoginScreen;
+const mapStateToProps = state => {
+  return {isLoggedIn: state.isLoggedIn};
+};
+
+// const mapDispatchToProps = dispatch => {
+//   return {login: () => dispatch(login()), logout: () => dispatch(logout())};
+// };
+
+const mapDispatchToProps = {login,logout};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: Colors.screenBackground},

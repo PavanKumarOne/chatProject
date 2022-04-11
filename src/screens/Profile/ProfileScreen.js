@@ -7,6 +7,12 @@ import {Button} from '../../components/atoms/button/index';
 import {Line} from '../../components/atoms/line';
 import {ImagePath, ResponsiveSize} from '../../utility';
 import theme from '../../styles/theme';
+import { HelperService } from '../../services/helperService';
+import {ApiHandler} from "../../network/apiClient"
+import { Logger } from '../../utility/logger';
+import { StorageKeys, StorageService } from '../../services/storageService';
+import { login,logout } from '../../redux/actions/action';
+import {connect} from "react-redux"
 
 const data = {
   name: 'Pavan Kumar',
@@ -18,13 +24,37 @@ const data = {
 
 const split = data.name.split(' ');
 
-const Logout=()=>{
-  console.log("Logout")
-}
+
 
 //TODO: Pavan: add logout funct, call api
 
-export const ProfileScreen = () => {
+const ProfileScreen = (props) => {
+
+
+  const Logout=async ()=>{
+
+    const payload = {
+     token :HelperService.token
+    };
+  
+    try {
+      let token = await ApiHandler({
+        endPoint: 'auth/applogout',
+        method: 'post',
+        reqParam: payload,
+      });
+  
+      
+  
+      console.log("response",token);
+      await StorageService.remove(StorageKeys.appToken);
+      props.logout()
+    } catch (e) {
+      Logger.error(e.message);
+    }
+  
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -37,7 +67,7 @@ export const ProfileScreen = () => {
         <ProfileRow heading={data.number} value={data.mobile} />
         <View style={styles.logOut}>
           <Button
-            onPress={() => {Logout}}
+            onPress={Logout}
             buttonText="Logout"
             textType="subHeading"
           />
@@ -46,6 +76,15 @@ export const ProfileScreen = () => {
     </View>
   );
 };
+
+const mapStateToProps = state => {
+  return {isLoggedIn: state.isLoggedIn};
+};
+
+
+const mapDispatchToProps = {login,logout};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
 
 const styles = StyleSheet.create({
   container: {flex: 1},
@@ -67,3 +106,5 @@ const styles = StyleSheet.create({
     marginTop: ResponsiveSize(16),
   },
 });
+
+

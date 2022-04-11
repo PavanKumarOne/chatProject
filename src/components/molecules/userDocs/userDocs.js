@@ -11,6 +11,7 @@ import {
 import {Image} from '../../atoms/image';
 import {ProfileRow} from '../../atoms/profileRow';
 import { UserInfoRow } from '../userInfoRow';
+import { ResponsiveSize } from '../../../utility';
 
 export const UserDocs = props => {
   const {data, currentTab} = props;
@@ -76,12 +77,12 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    padding: 2,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    padding: ResponsiveSize(2),
+    marginVertical: ResponsiveSize(8),
+    marginHorizontal: ResponsiveSize(16),
   },
   title: {
-    fontSize: 32,
+    fontSize: ResponsiveSize(32),
   },
   profileRowContainer: {
     justifyContent: 'flex-start',
@@ -92,12 +93,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   box: {
-    margin: 10,
+    margin: ResponsiveSize(10),
     backgroundColor:"white",
-    padding:2
+    padding:ResponsiveSize(2)
   },
   imageTag: {
-    width: 125,
-    height: 120,
+    width: ResponsiveSize(125),
+    height: ResponsiveSize(120),
   },
 });
