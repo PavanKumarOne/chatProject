@@ -3,6 +3,7 @@ import {request, response} from './interceptor';
 import {Platform} from 'react-native';
 import {isAndroid} from '../utility/platformUtils';
 import DeviceInfo from 'react-native-device-info';
+import { StorageService } from '../services/storageService';
 
 export const contentType = 'application/json';
 
@@ -12,15 +13,17 @@ let appVersion = DeviceInfo.getReadableVersion();
 let deviceVersion = DeviceInfo.getSystemVersion();
 let deviceOs = isAndroid ? 'android' : 'ios';
 
+const token=StorageService.get('token').then((res)=>console.log(res));
+
 export function apiConfig() {
   const axiosInstance = axios.create({
     baseURL: BASE_URL,
     headers: {
       Accept: contentType,
       'Content-Type': contentType,
-      // Authorization: state.authReducer?.data?.token
-      //   ? `Bearer ${state.authReducer?.data?.token}`
-      //   : '',
+      Authorization: token
+        ? `Bearer ${token}`
+        : '',
       appVersion,
       deviceVersion,
       deviceOs,

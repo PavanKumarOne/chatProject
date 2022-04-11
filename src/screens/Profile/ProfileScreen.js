@@ -18,6 +18,10 @@ const data = {
 
 const split = data.name.split(' ');
 
+const Logout=()=>{
+  console.log("Logout")
+}
+
 //TODO: Pavan: add logout funct, call api
 
 export const ProfileScreen = () => {
@@ -33,7 +37,7 @@ export const ProfileScreen = () => {
         <ProfileRow heading={data.number} value={data.mobile} />
         <View style={styles.logOut}>
           <Button
-            onPress={() => {}}
+            onPress={() => {Logout}}
             buttonText="Logout"
             textType="subHeading"
           />

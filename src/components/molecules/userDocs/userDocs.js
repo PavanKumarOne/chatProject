@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {Image} from '../../atoms/image';
 import {ProfileRow} from '../../atoms/profileRow';
+import { UserInfoRow } from '../userInfoRow';
 
 export const UserDocs = props => {
   const {data, currentTab} = props;
@@ -24,12 +25,12 @@ export const UserDocs = props => {
             data={data}
             renderItem={({item}) => (
               <View style={styles.box}>
-                <ProfileRow
-                  heading={item.title}
+                
+                <UserInfoRow heading={item.title}
                   subHeading={item.subHeading}
                   style={styles.profileRowContainer}
                   icon
-                />
+                  showArrow={false}/>
               </View>
             )}
           />
@@ -40,9 +41,8 @@ export const UserDocs = props => {
               renderItem={({item, index}) => (
                 <View
                   style={{
-                    flex: 1,
                     flexDirection: 'column',
-                    margin: 1,
+                    margin: 3,
                   }}>
                   <TouchableOpacity
                     onPress={() => {
@@ -92,7 +92,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   box: {
-    margin: 5,
+    margin: 10,
+    backgroundColor:"white",
+    padding:2
   },
   imageTag: {
     width: 125,
