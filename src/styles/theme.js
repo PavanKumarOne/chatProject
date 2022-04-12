@@ -27,6 +27,7 @@ const theme = {
     neutral: {
       // add new colors here
       blackBackground: '#FAFAFA',
+      dateBackground:"#DDDDE9",
       white: '#FFFFFF',
       black: '#000000',
       screenBackground: '#F4FBFD',

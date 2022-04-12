@@ -7,15 +7,16 @@ import {NavigationKeys} from '../../navigation/constants';
 import VectorImage from 'react-native-vector-image';
 import {ImagePath} from '../../utility';
 import {messages} from '../../../mocks/assignedChats';
+import { data } from '../../../mocks/assignedChats';
 import {TextInput} from '../../components/atoms/textInput';
 import {TouchableOpacity} from 'react-native';
 import {FileSelectorModal} from '../../components/molecules/fileSlectorModal';
 import {useState} from 'react';
 
 const renderChatMessage = ({item}) => {
-  const {message, user, name, time} = item;
-
-  return <Message message={message} user={user} name={name} time={time} />;
+  const {text,owner,eventType,eventDescription} = item;
+  return <Message message={text} owner={owner} time={"10:10"} type={eventType}  eventDescription={eventDescription}/>;
+  // return <Message message={message} user={user} name={name} time={time} />;
 };
 
 export const ChatScreen = ({route, navigation}) => {
@@ -43,7 +44,7 @@ export const ChatScreen = ({route, navigation}) => {
         }
       />
       <FlatList
-        data={messages}
+        data={data.reverse()}
         renderItem={renderChatMessage}
         keyExtractor={item => item.id}
       />
