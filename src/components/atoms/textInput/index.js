@@ -3,7 +3,8 @@ import {StyleSheet, TextInput as RNTextInput} from 'react-native';
 import theme from '../../../styles/theme';
 
 export const TextInput = props => {
-  const {borderRadi, border, onChangeText, placeholder} = props;
+  const {borderRadi, border, onChangeText, placeholder, onSubmitEditing} =
+    props;
 
   const [text, setText] = useState('');
 
@@ -18,6 +19,7 @@ export const TextInput = props => {
       }}
       value={text}
       placeholder={placeholder}
+      onSubmitEditing={onSubmitEditing}
     />
   );
 };

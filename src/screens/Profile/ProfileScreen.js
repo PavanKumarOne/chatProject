@@ -7,12 +7,12 @@ import {Button} from '../../components/atoms/button/index';
 import {Line} from '../../components/atoms/line';
 import {ImagePath, ResponsiveSize} from '../../utility';
 import theme from '../../styles/theme';
-import { HelperService } from '../../services/helperService';
-import {ApiHandler} from "../../network/apiClient"
-import { Logger } from '../../utility/logger';
-import { StorageKeys, StorageService } from '../../services/storageService';
-import { login,logout } from '../../redux/actions/action';
-import {connect} from "react-redux"
+import {HelperService} from '../../services/helperService';
+import {ApiHandler} from '../../network/apiClient';
+import {Logger} from '../../utility/logger';
+import {StorageKeys, StorageService} from '../../services/storageService';
+import {login, logout} from '../../redux/actions/action';
+import {connect} from 'react-redux';
 
 const data = {
   name: 'Pavan Kumar',
@@ -24,36 +24,28 @@ const data = {
 
 const split = data.name.split(' ');
 
-
-
 //TODO: Pavan: add logout funct, call api
 
-const ProfileScreen = (props) => {
-
-
-  const Logout=async ()=>{
-
+const ProfileScreen = props => {
+  const Logout = async () => {
     const payload = {
-     token :HelperService.token
+      token: HelperService.token,
     };
-  
+
     try {
       let token = await ApiHandler({
         endPoint: 'auth/applogout',
         method: 'post',
         reqParam: payload,
       });
-  
-      
-  
-      console.log("response",token);
+
+      console.log('response', token);
       await StorageService.remove(StorageKeys.appToken);
-      props.logout()
+      props.logout();
     } catch (e) {
       Logger.error(e.message);
     }
-  
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -66,11 +58,7 @@ const ProfileScreen = (props) => {
         <Line />
         <ProfileRow heading={data.number} value={data.mobile} />
         <View style={styles.logOut}>
-          <Button
-            onPress={Logout}
-            buttonText="Logout"
-            textType="subHeading"
-          />
+          <Button onPress={Logout} buttonText="Logout" textType="subHeading" />
         </View>
       </View>
     </View>
@@ -81,8 +69,7 @@ const mapStateToProps = state => {
   return {isLoggedIn: state.isLoggedIn};
 };
 
-
-const mapDispatchToProps = {login,logout};
+const mapDispatchToProps = {login, logout};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);
 
@@ -106,5 +93,3 @@ const styles = StyleSheet.create({
     marginTop: ResponsiveSize(16),
   },
 });
-
-

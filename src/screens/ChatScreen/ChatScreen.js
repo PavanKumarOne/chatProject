@@ -11,6 +11,9 @@ import {TextInput} from '../../components/atoms/textInput';
 import {TouchableOpacity} from 'react-native';
 import {FileSelectorModal} from '../../components/molecules/fileSlectorModal';
 import {useState} from 'react';
+import {Logger} from '../../utility/logger';
+import {StorageKeys, StorageService} from '../../services/storageService';
+import {ApiHandler} from '../../network/apiClient';
 
 const renderChatMessage = ({item}) => {
   const {message, user, name, time} = item;
@@ -19,13 +22,40 @@ const renderChatMessage = ({item}) => {
 };
 
 export const ChatScreen = ({route, navigation}) => {
+
   if (route.params) {
     var {
       item: {groupName, groupImage},
     } = route.params;
   }
 
+
+
+const onSubmit = async () => {
+  // console.log("onsubmit working",textValue);
+  const payload = {
+    whatsappNumber: '919886137711',
+    text: textValue,
+    clinic_id: 1,
+  };
+  console.log(payload);
+  try {
+    let response = await ApiHandler({
+      endPoint: 'chat/reply',
+      method: 'post',
+      reqParam: payload,
+    });
+
+    console.log('response', response);
+    // await StorageService.remove(StorageKeys.appToken);
+  } catch (e) {
+    Logger.error(e.message);
+  }
+};
+
+
   const [showFileSelector, setShowFileSelector] = useState(false);
+  const [textValue, setTextValue] = useState('');
 
   return (
     <View style={styles.container}>
@@ -55,7 +85,10 @@ export const ChatScreen = ({route, navigation}) => {
           style={styles.box}
           border={theme.palette.secondary.secondary01}
           borderRadi="16"
-          onChangeText={() => {}}
+          onChangeText={text => {
+            setTextValue(text);
+          }}
+          onSubmitEditing={onSubmit}
         />
       </View>
       <FileSelectorModal
