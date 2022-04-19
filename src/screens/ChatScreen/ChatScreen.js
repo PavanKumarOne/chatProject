@@ -7,7 +7,7 @@ import {NavigationKeys} from '../../navigation/constants';
 import VectorImage from 'react-native-vector-image';
 import {ImagePath} from '../../utility';
 import {messages} from '../../../mocks/assignedChats';
-import { data } from '../../../mocks/assignedChats';
+import {data} from '../../../mocks/assignedChats';
 import {TextInput} from '../../components/atoms/textInput';
 import {TouchableOpacity} from 'react-native';
 import {FileSelectorModal} from '../../components/molecules/fileSlectorModal';
@@ -17,43 +17,47 @@ import {StorageKeys, StorageService} from '../../services/storageService';
 import {ApiHandler} from '../../network/apiClient';
 
 const renderChatMessage = ({item}) => {
-  const {text,owner,eventType,eventDescription} = item;
-  return <Message message={text} owner={owner} time={"10:10"} type={eventType}  eventDescription={eventDescription}/>;
+  const {text, owner, eventType, eventDescription} = item;
+  return (
+    <Message
+      message={text}
+      owner={owner}
+      time={'10:10'}
+      type={eventType}
+      eventDescription={eventDescription}
+    />
+  );
   // return <Message message={message} user={user} name={name} time={time} />;
 };
 
 export const ChatScreen = ({route, navigation}) => {
-
   if (route.params) {
     var {
       item: {groupName, groupImage},
     } = route.params;
   }
 
+  const onSubmit = async () => {
+    // console.log("onsubmit working",textValue);
+    const payload = {
+      whatsappNumber: '919886137711',
+      text: textValue,
+      clinic_id: 1,
+    };
+    console.log(payload);
+    try {
+      let response = await ApiHandler({
+        endPoint: 'chat/reply',
+        method: 'post',
+        reqParam: payload,
+      });
 
-
-const onSubmit = async () => {
-  // console.log("onsubmit working",textValue);
-  const payload = {
-    whatsappNumber: '919886137711',
-    text: textValue,
-    clinic_id: 1,
+      console.log('response', response);
+      // await StorageService.remove(StorageKeys.appToken);
+    } catch (e) {
+      Logger.error(e.message);
+    }
   };
-  console.log(payload);
-  try {
-    let response = await ApiHandler({
-      endPoint: 'chat/reply',
-      method: 'post',
-      reqParam: payload,
-    });
-
-    console.log('response', response);
-    // await StorageService.remove(StorageKeys.appToken);
-  } catch (e) {
-    Logger.error(e.message);
-  }
-};
-
 
   const [showFileSelector, setShowFileSelector] = useState(false);
   const [textValue, setTextValue] = useState('');
@@ -74,9 +78,10 @@ const onSubmit = async () => {
         }
       />
       <FlatList
-        data={data.reverse()}
+        data={data}
         renderItem={renderChatMessage}
         keyExtractor={item => item.id}
+        inverted
       />
       <View style={styles.attachCont}>
         <TouchableOpacity onPress={() => setShowFileSelector(true)}>
